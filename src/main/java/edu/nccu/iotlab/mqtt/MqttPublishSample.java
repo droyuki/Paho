@@ -3,6 +3,8 @@ package edu.nccu.iotlab.mqtt;
 /**
  * Created by WeiChen on 2016/2/6.
  */
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -12,7 +14,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class MqttPublishSample {
 
     public static void main(String[] args) {
-        String broker       = new Config().getBroker();
+        Config conf = ConfigFactory.load();
+        String broker = conf.getString("broker");
         String topic        = "mqtt_test";
         String content      = "Test Message from MqttPublishSample!";
         int qos             = 0;

@@ -1,5 +1,7 @@
 package edu.nccu.iotlab.mqtt;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import org.eclipse.paho.client.mqttv3.*;
 
 /**
@@ -7,7 +9,8 @@ import org.eclipse.paho.client.mqttv3.*;
  */
 public class MqttSubscribeSample implements MqttCallback {
     MqttClient client;
-    String broker = new Config().getBroker();
+    Config conf = ConfigFactory.load();
+    String broker = conf.getString("broker");
     String subTopic = "mqtt_test";
 
     public MqttSubscribeSample() {
